@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!-- 需要加上 xmlns:th="http://www.thymeleaf.org, 否则th标签会报错-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>testList</title>
+</head>
+<body>
+
+<div>
+	<h2>测试列表</h2>
+	<ul>
+		<li th:each="test:${testList}">
+			<p>id: <span th:text="${test.id}"></span></p>
+			<p>code: <span th:text="${test.code}"></span></p>
+			<p>value: <span th:text="${test.value}"></span></p>
+			<p><a th:href="@{/deleteById(id=${test.id})}">删除</a></p>
+		</li>
+	</ul>
+</div>
+
+</body>
+</html>

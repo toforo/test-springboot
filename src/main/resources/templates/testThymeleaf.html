@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- 需要加上 xmlns:th="http://www.thymeleaf.org, 否则th标签会报错-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>testThymeleaf</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<script th:src="@{/js/jquery-1.7.2.min.js}"></script>
+</head>
+<body>
+
+<div class="left">
+	<p th:text="'Hello, ' + ${title}" class="title"/>
+	<p><a onclick="show()" class="f16">点我学习</a></p>
+	<img alt="银魂" th:src="@{/images/yinhun.jpg}" class="hide" id="yinhun"/>
+</div>
+<div class="right">
+	<p><a th:href="@{/thymeleaf/testList}" class="f16">测试列表</a></p>
+	<p><a th:href="@{/thymeleaf/testForm}" class="f16">测试表单</a></p>
+</div>
+
+<script type="text/javascript">
+	function show(){
+		$("#yinhun").show();
+	}
+</script>
+</body>
+</html>

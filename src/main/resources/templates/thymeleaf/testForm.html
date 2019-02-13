@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- 需要加上 xmlns:th="http://www.thymeleaf.org, 否则th标签会报错-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>testForm</title>
+</head>
+<body>
+
+<div>
+	<h2>测试表单</h2>
+	<form th:action="@{/save}" method="post">
+		<p>code: <input type="text" name="code" /></p>
+		<p>value: <input type="text" name="value" /></p>
+		<p><input type="submit" value="保存"/></p>
+	</form>
+	<h2>测试表单2</h2>
+	<form th:action="@{/save2}" method="post">
+		<p>code2: <input type="text" name="code" /></p>
+		<p>value2: <input type="text" name="value" /></p>
+		<p><input type="submit" value="保存"/></p>
+	</form>
+</div>
+
+</body>
+</html>
