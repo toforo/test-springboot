@@ -3,6 +3,7 @@
   <groupId>com.zzzz</groupId>
   <artifactId>springboot</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
   
   	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -37,7 +38,21 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <!-- 打war部署到外部tomcat方式1：排除内置tomcat: -->
+			<!-- <exclusions>
+		        <exclusion>
+		            <groupId>org.springframework.boot</groupId>
+		            <artifactId>spring-boot-starter-tomcat</artifactId>
+		        </exclusion>
+		    </exclusions> -->
         </dependency>
+        
+        <!-- 打war部署到外部tomcat方式2：设置tomcat生命周期为provided(打包时不会打进去) -->
+        <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-tomcat</artifactId>
+		    <scope>provided</scope>
+		</dependency>
 		
         <!-- mysql -->
 		<dependency>
@@ -73,6 +88,8 @@
 	</dependencies>
 
 	<build>
+		<!-- war包名称 -->
+		<finalName>springboot</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
