@@ -1,17 +1,27 @@
 package com.zzzz.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Paths;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zzzz.config.Config;
 import com.zzzz.config.TestConfig;
 import com.zzzz.model.Test;
 import com.zzzz.service.TestService;
+import com.zzzz.util.FileUtil;
 
 /**
  * 随便测试
@@ -26,6 +36,8 @@ public class TestController {
 	private TestService testService;
 	@Autowired
 	private TestConfig testConfig;
+	@Autowired
+	private Config config;
 	
 
 	/**
@@ -185,9 +197,68 @@ public class TestController {
 	 * @date 2019年2月18日
 	 * @return
 	 */
-	@RequestMapping("/testConfig")
-	public String testConfig(){
+	@RequestMapping("/config")
+	public String config(){
 		
-		return "testConfig: " + testConfig.toString();
+		return "config: " + testConfig.toString();
 	}
+	
+	/**
+	 * 上传文件测试页面
+	 * @author zhuangyilian
+	 * @date 2019年2月18日
+	 * @return
+	 */
+	@RequestMapping("/file")
+	public ModelAndView file(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("testFile");
+		
+		return mv;
+	}
+	
+	/**
+	 * 上传文件
+	 * @author zhuangyilian
+	 * @date 2019年2月18日
+	 * @return
+	 */
+	@RequestMapping("/upload")
+	public String upload(@RequestParam("file") MultipartFile file){
+		try {
+			InputStream is = file.getInputStream();
+			String path = config.getUploadPath() + file.getOriginalFilename();
+			
+			FileUtil.uploadFile(is, path);
+		} catch (IOException e) {
+			e.printStackTrace();
+			
+			return "fail";
+		}
+		
+		return "succ";
+	}
+	
+	/**
+	 * 下载文件
+	 * @author zhuangyilian
+	 * @date 2019年2月18日
+	 * @return
+	 */
+	@RequestMapping("/download")
+	public void download(HttpServletResponse response){
+		String fileName = "1F524114F4-2.jpg";// 文件名
+		response.setContentType("application/force-download");// 设置强制下载不打开
+		response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名
+		
+		try {
+			String filePath = Paths.get(config.getUploadPath() + fileName).toAbsolutePath().toString();
+			File file = new File(filePath);
+			
+			FileUtil.downloadFile(file, response.getOutputStream());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

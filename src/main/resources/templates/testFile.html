@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!-- 需要加上 xmlns:th="http://www.thymeleaf.org, 否则th标签会报错-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>testUpload</title>
+</head>
+<body>
+
+<h2>文件上传</h2>
+<form method="POST" action="/upload" enctype="multipart/form-data">
+    <input type="file" name="file" /><br/><br/>
+    <input type="submit" value="Submit" />
+</form>
+<h2>文件下载</h2>
+<a href="/download">下载</a>
+
+</body>
+</html>
