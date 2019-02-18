@@ -18,7 +18,7 @@ import com.zzzz.model.Test;
  * @date 2019年2月18日
  */
 @Component //只有容器中的组件,才能使用@ConfigurationProperties提供的功能
-@PropertySource(value="classpath:test.properties", ignoreResourceNotFound=true, encoding="UTF-8")	//指定从哪个配置文件读取属性值(不设置value值,则默认从主配置文件读取)
+@PropertySource(value="classpath:config/test.properties", ignoreResourceNotFound=true, encoding="UTF-8")	//指定从哪个配置文件读取属性值(不加该注解,则默认从主配置文件读取)
 @ConfigurationProperties(prefix="test")	//属性前缀
 public class TestConfig {
 	
