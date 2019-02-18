@@ -2,5 +2,5 @@
 #.settings
 /target/
 /.settings/
-.classpath
-.project
+#.classpath
+#.project
