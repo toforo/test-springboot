@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zzzz.config.TestConfig;
 import com.zzzz.model.Test;
 import com.zzzz.service.TestService;
 
@@ -23,6 +24,8 @@ public class TestController {
 	
 	@Autowired
 	private TestService testService;
+	@Autowired
+	private TestConfig testConfig;
 	
 
 	/**
@@ -176,4 +179,15 @@ public class TestController {
 	    return new ModelAndView("index");
 	}
 	
+	/**
+	 * 自定义配置测试
+	 * @author zhuangyilian
+	 * @date 2019年2月18日
+	 * @return
+	 */
+	@RequestMapping("/testConfig")
+	public String testConfig(){
+		
+		return "testConfig: " + testConfig.toString();
+	}
 }
