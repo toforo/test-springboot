@@ -1,0 +1,94 @@
+package com.zzzz.security;
+
+import java.util.HashSet;
+
+import org.apache.shiro.authc.AccountException;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.zzzz.model.Permission;
+import com.zzzz.model.Role;
+import com.zzzz.model.User;
+import com.zzzz.service.TestShiroService;
+
+/**
+ * 自定义Shiro认证类,负责用户认证和权限处理
+ * @author zhuangyilian
+ * @date 2019年2月23日
+ */
+public class ShiroRealm extends AuthorizingRealm {
+	
+	@Autowired
+	private TestShiroService testShiroService; 
+
+	
+	/**
+	 * 授权(授权角色和权限)
+	 */
+	@Override
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+		//登录用户名
+		String name = principalCollection.getPrimaryPrincipal().toString();
+		//查询用户
+		User user = testShiroService.findByName(name);
+		
+		//添加角色和权限
+		SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+		for (Role role : user.getRoles()) {
+			//添加角色
+            simpleAuthorizationInfo.addRole(role.getName());
+            for (Permission permission : role.getPermissions()) {
+                //添加权限
+                simpleAuthorizationInfo.addStringPermission(permission.getName());
+            }
+		}
+		
+		//返回授权信息
+		return simpleAuthorizationInfo;
+	}
+
+	/**
+	 * 认证(验证用户名和密码)
+	 */
+	@Override
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+//		Object principal = authenticationToken.getPrincipal();
+//		Object credentials = authenticationToken.getCredentials();
+//		//post请求会先进认证,再到请求
+//		if(principal == null || credentials == null){
+//			return null;
+//		}
+//		
+//		//用户名
+//		String name = principal.toString();
+//		//密码
+//		String password = authenticationToken.getCredentials().toString();
+		
+		UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) authenticationToken;
+		
+		//用户名
+		String name = usernamePasswordToken.getUsername();
+		//密码
+		String password = new String(usernamePasswordToken.getPassword());
+		
+		//查询用户
+		User user = testShiroService.findByName(name);
+		if(user == null){
+			throw new AccountException("用户名不正确");
+		} else if (!password.equals(password)) {
+            throw new AccountException("密码不正确");
+        }
+		
+		//认证成功,返回认证信息 
+        return new SimpleAuthenticationInfo(user.getName(), user.getPassword(), this.getClass().getName());
+	}
+
+}

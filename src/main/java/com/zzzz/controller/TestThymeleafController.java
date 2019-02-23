@@ -33,7 +33,7 @@ public class TestThymeleafController {
 	 */
 	@RequestMapping("/test")
 	public ModelAndView test(ModelAndView mv){
-		mv.setViewName("testThymeleaf");
+		mv.setViewName("thymeleaf/test");
 		mv.addObject("title","欢迎使用Thymeleaf!");
 		
 		return mv;
