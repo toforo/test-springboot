@@ -27,22 +27,22 @@ public class TestApplication extends SpringBootServletInitializer {
 		SpringApplication.run(TestApplication.class, args);
 	}
 	
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-    	
-        return builder.sources(TestApplication.class);
-    }
-    
-    /**
-     * 注入全局异常处理类
-     * @author zhuangyilian
-     * @date 2019年2月23日
-     * @return
-     */
-    @Bean
-    public GlobalExceptionResolver globalExceptionResolver() {
-    	
-    	return new GlobalExceptionResolver();
-    }
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		
+		return builder.sources(TestApplication.class);
+	}
+	
+	/**
+	 * 注入全局异常处理类
+	 * @author zhuangyilian
+	 * @date 2019年2月23日
+	 * @return
+	 */
+	@Bean
+	public GlobalExceptionResolver globalExceptionResolver() {
+		
+		return new GlobalExceptionResolver();
+	}
     
 }
