@@ -8,6 +8,8 @@ import com.zzzz.model.User;
 @Repository
 public interface UserDao extends JpaRepository<User, Long>{
 
-	User findByName(String name);
+	User findByName(String userName);
+	
+	User findByNameAndPassword(String userName, String password);
 	
 }

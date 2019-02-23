@@ -36,9 +36,9 @@ public class ShiroRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 		//登录用户名
-		String name = principalCollection.getPrimaryPrincipal().toString();
+		String userName = principalCollection.getPrimaryPrincipal().toString();
 		//查询用户
-		User user = testShiroService.findByName(name);
+		User user = testShiroService.findUserByName(userName);
 		
 		//添加角色和权限
 		SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
@@ -68,24 +68,22 @@ public class ShiroRealm extends AuthorizingRealm {
 //		}
 //		
 //		//用户名
-//		String name = principal.toString();
+//		String userName = principal.toString();
 //		//密码
 //		String password = authenticationToken.getCredentials().toString();
 		
 		UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) authenticationToken;
 		
 		//用户名
-		String name = usernamePasswordToken.getUsername();
+		String userName = usernamePasswordToken.getUsername();
 		//密码
 		String password = new String(usernamePasswordToken.getPassword());
 		
 		//查询用户
-		User user = testShiroService.findByName(name);
+		User user = testShiroService.findUserByNameAndPassword(userName, password);
 		if(user == null){
-			throw new AccountException("用户名不正确");
-		} else if (!password.equals(password)) {
-            throw new AccountException("密码不正确");
-        }
+			throw new AccountException("用户名或密码错误");
+		}
 		
 		//认证成功,返回认证信息 
         return new SimpleAuthenticationInfo(user.getName(), user.getPassword(), this.getClass().getName());
