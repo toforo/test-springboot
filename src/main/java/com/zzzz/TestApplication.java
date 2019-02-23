@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
+
+import com.zzzz.exception.GlobalExceptionResolver;
 
 /**
  * SpringBoot启动类
@@ -20,12 +23,26 @@ import org.springframework.cache.annotation.EnableCaching;
 public class TestApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
+		
 		SpringApplication.run(TestApplication.class, args);
 	}
 	
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+    	
         return builder.sources(TestApplication.class);
+    }
+    
+    /**
+     * 注入全局异常处理类
+     * @author zhuangyilian
+     * @date 2019年2月23日
+     * @return
+     */
+    @Bean
+    public GlobalExceptionResolver globalExceptionResolver() {
+    	
+    	return new GlobalExceptionResolver();
     }
     
 }

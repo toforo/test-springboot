@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -259,6 +260,20 @@ public class TestController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * test error 500
+	 * @author zhuangyilian
+	 * @date 2019年2月23日
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/test500")
+	public String test500(){
+		int a = 1 / 0;
+		
+		return "test500";
 	}
 	
 }

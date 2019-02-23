@@ -81,6 +81,7 @@ public class ShiroRealm extends AuthorizingRealm {
 		
 		//查询用户
 		User user = testShiroService.findUserByNameAndPassword(userName, password);
+//		User user = testShiroService.findUserByName(userName);	//也可以直接根据用户名查询,因为Shiro会自动进行密码校验
 		if(user == null){
 			throw new AccountException("用户名或密码错误");
 		}

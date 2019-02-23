@@ -3,13 +3,16 @@ package com.zzzz.security;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.servlet.Filter;
+
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.filter.authc.LogoutFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.HandlerExceptionResolver;
 
 /**
  * Shiro过滤配置
@@ -58,12 +61,20 @@ public class ShiroConfiguration {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         //设置安全管理类
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-        //登录跳转(如果不设置,默认会自动寻找Web工程根目录下的"/login.jsp"页面 或 "/login"映射)
+        //无认证时登录跳转(如果不设置,默认会自动寻找Web工程根目录下的"/login.jsp"页面 或 "/login"映射)
         shiroFilterFactoryBean.setLoginUrl("/shiro/toLogin");
-        //登录成功后跳转
+        //认证成功后跳转
         shiroFilterFactoryBean.setSuccessUrl("/shiro/index");
-        //无权限时跳转(只能用于授权拦截,对于认证不通过的无效果)
-        shiroFilterFactoryBean.setUnauthorizedUrl("/shiro/error403");
+        //无授权时跳转(只能用于授权拦截,对于认证不通过的无效果)
+//      shiroFilterFactoryBean.setUnauthorizedUrl("/shiro/error403");	//根本不能用,无授权时只会抛出AuthorizationException,需在全局异常处理类进行处理
+        
+//		//自定义过滤器
+//		Map<String, Filter> filters = new LinkedHashMap<String, Filter>();
+//		//登出过滤器
+//		LogoutFilter logoutFilter = new LogoutFilter();
+//		logoutFilter.setRedirectUrl("/shiro/toLogin");
+//		filters.put("logout", logoutFilter);
+//		shiroFilterFactoryBean.setFilters(filters);
         
         //自定义过滤链(按顺序过滤,使用LinkedHashMap,不能使用HashMap)
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
@@ -84,17 +95,30 @@ public class ShiroConfiguration {
         return shiroFilterFactoryBean;
     }
 
-    /**
-     * 开启shiro注解支持.
-     * @param securityManager
-     * @return
-     */
+	/**
+	 * 开启shiro注解支持
+	 * @author zhuangyilian
+	 * @date 2019年2月23日
+	 * @param securityManager
+	 * @return
+	 */
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         
         return authorizationAttributeSourceAdvisor;
+    }
+    
+	/**
+	 * 管理shiro的bean生命周期
+	 * @author zhuangyilian
+	 * @date 2019年2月23日
+	 * @return
+	 */
+    @Bean
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        return new LifecycleBeanPostProcessor();
     }
 
 }
