@@ -6,3 +6,4 @@
 * Mybatis
 * Thymeleaf
 * Redis
+* Shiro
