@@ -88,23 +88,23 @@ public class TestShiroController {
 		//获取用户主题
 		Subject subject = SecurityUtils.getSubject();
 		//创建登录令牌
-        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, password);
-        
-        try {
-        	//登录认证
-        	subject.login(usernamePasswordToken);
-        	
-        	//查询用户
-        	user = testShiroService.findUserByName(userName);
-            //将用户信息存入session
-            session.setAttribute("user", user);
-        	
-            return "shiro/index";
+		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, password);
+		
+		try {
+			//登录认证
+			subject.login(usernamePasswordToken);
+			
+			//查询用户
+			user = testShiroService.findUserByName(userName);
+			//将用户信息存入session
+			session.setAttribute("user", user);
+			
+			return "shiro/index";
 		} catch (AuthenticationException e) {
 			e.printStackTrace();
 		}
-        
-        return "shiro/toLogin";
+		
+		return "shiro/toLogin";
 	}
 	
 	/**
@@ -121,7 +121,7 @@ public class TestShiroController {
 		subject.logout();
 		
 		//shiro的logout()会自动清除session数据
-//		session.removeAttribute("user");
+		//session.removeAttribute("user");
 		
 		return "/shiro/toLogin";
 	}

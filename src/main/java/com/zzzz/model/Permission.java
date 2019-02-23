@@ -15,13 +15,13 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Permission {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    @ManyToOne(fetch=FetchType.EAGER)
-    private Role role;
-    
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	private String name;
+	@ManyToOne(fetch=FetchType.EAGER)
+	private Role role;
+	
 	public Long getId() {
 		return id;
 	}

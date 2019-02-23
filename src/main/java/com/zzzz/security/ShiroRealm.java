@@ -44,11 +44,11 @@ public class ShiroRealm extends AuthorizingRealm {
 		SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 		for (Role role : user.getRoles()) {
 			//添加角色
-            simpleAuthorizationInfo.addRole(role.getName());
-            for (Permission permission : role.getPermissions()) {
-                //添加权限
-                simpleAuthorizationInfo.addStringPermission(permission.getName());
-            }
+			simpleAuthorizationInfo.addRole(role.getName());
+			for (Permission permission : role.getPermissions()) {
+				//添加权限
+				simpleAuthorizationInfo.addStringPermission(permission.getName());
+			}
 		}
 		
 		//返回授权信息
@@ -87,7 +87,7 @@ public class ShiroRealm extends AuthorizingRealm {
 		}
 		
 		//认证成功,返回认证信息 
-        return new SimpleAuthenticationInfo(user.getName(), user.getPassword(), this.getClass().getName());
+		return new SimpleAuthenticationInfo(user.getName(), user.getPassword(), this.getClass().getName());
 	}
 
 }

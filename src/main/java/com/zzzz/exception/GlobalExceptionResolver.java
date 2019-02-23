@@ -25,17 +25,17 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver{
 		
 		//shiro授权拦截
 		if (ex instanceof UnauthorizedException) {
-            ModelAndView mv = new ModelAndView("shiro/error403");
-            
-            return mv;
-        }
+			ModelAndView mv = new ModelAndView("shiro/error403");
+			
+			return mv;
+		}
 		
 		//没有定义跳转的错误页面时,会跳转到BasicErrorController中定义的错误页面,即静态资源路径下error目录下的页面
 //		ModelAndView mv = new ModelAndView("error500");
-//        
+//
 //		return mv;
-        
-        return null;
+
+		return null;
 	}
 
 }

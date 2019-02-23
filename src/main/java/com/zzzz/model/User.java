@@ -18,15 +18,15 @@ import javax.persistence.OneToMany;
 @Entity
 public class User {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    @Column(unique=true)
-    private String name;
-    private String password;
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="user")
-    private List<Role> roles;
-    
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	@Column(unique=true)
+	private String name;
+	private String password;
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+	private List<Role> roles;
+	
 	public Long getId() {
 		return id;
 	}

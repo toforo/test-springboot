@@ -19,15 +19,15 @@ import javax.persistence.OneToMany;
 @Entity
 public class Role {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    @ManyToOne(fetch=FetchType.EAGER)
-    private User user;
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="role")
-    private List<Permission> permissions;
-    
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	private String name;
+	@ManyToOne(fetch=FetchType.EAGER)
+	private User user;
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="role")
+	private List<Permission> permissions;
+	
 	public Long getId() {
 		return id;
 	}

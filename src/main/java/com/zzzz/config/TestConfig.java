@@ -25,14 +25,14 @@ public class TestConfig {
 	//@Value("${test.testStr}")
 	private String testStr;
 	private Integer testInt;
-    private boolean testBool;
-    private Date testDate;
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date testDateFormat;
+	private boolean testBool;
+	private Date testDate;
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date testDateFormat;
 	private Map<String, Object> testMap;
-    private List<Object> testList;
-    private Test testTest;
-    
+	private List<Object> testList;
+	private Test testTest;
+	
 	public String getTestStr() {
 		return testStr;
 	}

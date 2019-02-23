@@ -15,7 +15,7 @@ public class Config {
 	
 	/**文件上传路径*/
 	@Value("${web.upload-path}")
-    private String uploadPath;
+	private String uploadPath;
 
 	public String getUploadPath() {
 		return uploadPath;
