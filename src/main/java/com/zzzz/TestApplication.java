@@ -7,6 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import com.zzzz.exception.GlobalExceptionResolver;
 
@@ -34,15 +35,16 @@ public class TestApplication extends SpringBootServletInitializer {
 	}
 	
 	/**
-	 * 注入全局异常处理类
+	 * 全局异常处理类
+	 * 类上加了@Component时,不用该方法
 	 * @author zhuangyilian
 	 * @date 2019年2月23日
 	 * @return
 	 */
-	@Bean
-	public GlobalExceptionResolver globalExceptionResolver() {
-		
-		return new GlobalExceptionResolver();
-	}
+//	@Bean	//生产并注册bean(用于返回对象的方法上,与@Component作用一样,但是更灵活)
+//	public GlobalExceptionResolver globalExceptionResolver() {
+//		
+//		return new GlobalExceptionResolver();
+//	}
     
 }
