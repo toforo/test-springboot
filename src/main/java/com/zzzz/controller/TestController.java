@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zzzz.config.Config;
-import com.zzzz.config.JunitConfigTest;
+import com.zzzz.config.TestConfig;
 import com.zzzz.model.Test;
 import com.zzzz.service.TestService;
 import com.zzzz.util.FileUtil;
@@ -35,7 +35,7 @@ public class TestController {
 	@Autowired
 	private TestService testService;
 	@Autowired
-	private JunitConfigTest testConfig;
+	private TestConfig testConfig;
 	@Autowired
 	private Config config;
 	
