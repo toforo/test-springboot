@@ -9,7 +9,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zzzz.config.Config;
-import com.zzzz.config.TestConfig;
+import com.zzzz.config.JunitConfigTest;
 import com.zzzz.model.Test;
 import com.zzzz.service.TestService;
 import com.zzzz.util.FileUtil;
@@ -36,7 +35,7 @@ public class TestController {
 	@Autowired
 	private TestService testService;
 	@Autowired
-	private TestConfig testConfig;
+	private JunitConfigTest testConfig;
 	@Autowired
 	private Config config;
 	
