@@ -14,7 +14,7 @@ import com.zzzz.config.JunitConfigTest;
 
 /**
  * Junit测试
- * 由于src/test/java下的包名一般会与src/main/java的一致,因此要注意src/test/java中不要注入src/main/java中的类,否则会找不到类
+ * 注意src/test/java中不要注入src/main/java中的类,否则会找不到类
  * @author zhuangyilian
  * @date 2019年2月24日
  */
