@@ -6,13 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import com.zzzz.dao.TestDao;
-
 @Service
 public class TestRedisService {
 	
-	@Autowired
-	private TestDao testDao;
 	@Autowired
 	private RedisTemplate<String, String> redisTemplate;	//必须设置redis连接属性
 	
