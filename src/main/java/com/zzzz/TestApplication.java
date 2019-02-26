@@ -7,6 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 
 import com.zzzz.exception.GlobalExceptionResolver;
@@ -21,6 +22,7 @@ import com.zzzz.exception.GlobalExceptionResolver;
 @SpringBootApplication
 @MapperScan("com.zzzz.mapper")	//Mybatis的Mapper包扫描,不使用时需在Mapper类上加@Mapper
 @EnableCaching	//开启缓存
+//@EnableScheduling	//开启定时任务
 public class TestApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
