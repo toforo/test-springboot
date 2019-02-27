@@ -2,8 +2,10 @@
 * Web
 * Logging
 * DateSource
-* Spring Data JPA
+* SpringDataJPA
 * Mybatis
 * Thymeleaf
 * Redis
 * Shiro
+* Mail
+* RabbitMQ
