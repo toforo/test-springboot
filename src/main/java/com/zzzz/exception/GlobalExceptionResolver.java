@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author zhuangyilian
  * @date 2019年2月23日
  */
-@Component //在启动类中使用@Bean注册时,不用加@Component
+@Component //相当于xml的bean(在启动类中使用@Bean注册时,不用加@Component)
 public class GlobalExceptionResolver implements HandlerExceptionResolver{
 
 	@Override

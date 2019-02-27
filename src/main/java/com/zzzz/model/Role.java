@@ -1,5 +1,6 @@
 package com.zzzz.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,8 +18,10 @@ import javax.persistence.OneToMany;
  * @date 2019年2月23日
  */
 @Entity
-public class Role {
+public class Role implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -51,5 +54,11 @@ public class Role {
 	}
 	public void setPermissions(List<Permission> permissions) {
 		this.permissions = permissions;
+	}
+	
+	@Override
+	public String toString() {
+		return "Role [id=" + id + ", name=" + name + ", user=" + user
+				+ ", permissions=" + permissions + "]";
 	}
 }

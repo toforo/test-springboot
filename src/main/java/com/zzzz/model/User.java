@@ -1,5 +1,6 @@
 package com.zzzz.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,7 +17,9 @@ import javax.persistence.OneToMany;
  * @date 2019年2月23日
  */
 @Entity
-public class User {
+public class User implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -50,5 +53,11 @@ public class User {
 	}
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", password=" + password
+				+ ", roles=" + roles + "]";
 	}
 }

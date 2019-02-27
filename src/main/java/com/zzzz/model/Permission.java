@@ -1,5 +1,7 @@
 package com.zzzz.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,8 +15,10 @@ import javax.persistence.ManyToOne;
  * @date 2019年2月23日
  */
 @Entity
-public class Permission {
+public class Permission implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -39,5 +43,11 @@ public class Permission {
 	}
 	public void setRole(Role role) {
 		this.role = role;
+	}
+	
+	@Override
+	public String toString() {
+		return "Permission [id=" + id + ", name=" + name + ", role=" + role
+				+ "]";
 	}
 }

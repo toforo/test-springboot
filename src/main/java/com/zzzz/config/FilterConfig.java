@@ -11,7 +11,7 @@ import com.zzzz.filter.LogFilter;
  * @author zhuangyilian
  * @date 2019年2月24日
  */
-@Configuration
+@Configuration	//相当于xml的beans
 public class FilterConfig {
 
 	/**
@@ -20,7 +20,7 @@ public class FilterConfig {
 	 * @date 2019年2月24日
 	 * @return
 	 */
-	@Bean
+	@Bean	//相当于xml的bean
 	public FilterRegistrationBean<LogFilter> registFilter() {
 		FilterRegistrationBean<LogFilter> registration = new FilterRegistrationBean<LogFilter>();
 		registration.setFilter(new LogFilter());	//设置过滤器

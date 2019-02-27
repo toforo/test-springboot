@@ -26,8 +26,11 @@ import com.zzzz.exception.GlobalExceptionResolver;
 public class TestApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
+		System.out.println("The service will start...");
 		
 		SpringApplication.run(TestApplication.class, args);
+		
+		System.out.println("The service has started...");
 	}
 	
 	@Override
@@ -43,7 +46,7 @@ public class TestApplication extends SpringBootServletInitializer {
 	 * @date 2019年2月23日
 	 * @return
 	 */
-//	@Bean	//生产并注册bean(用于返回对象的方法上,与@Component作用一样,但是更灵活)
+//	@Bean	//以方法名为id生产并注册bean(用于返回对象的方法上,与@Component作用一样,但是更灵活)
 //	public GlobalExceptionResolver globalExceptionResolver() {
 //		
 //		return new GlobalExceptionResolver();
