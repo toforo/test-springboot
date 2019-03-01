@@ -10,7 +10,7 @@ import com.zzzz.service.TestMailService;
  * @author zhuangyilian
  * @date 2019年2月26日
  */
-public class MailTest {
+public class MailTest extends BaseTest {
 	
 	private static final String TO_MAIL = "1010092116@qq.com";
 	
