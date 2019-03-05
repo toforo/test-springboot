@@ -1,5 +1,7 @@
 package com.zzzz.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -117,6 +119,21 @@ public class TestMybatisController {
 		int rows = testMybatisService.save(test);
 		
 		return "save2: " + rows;
+	}
+	
+	/**
+	 * 分页查询
+	 * @author zhuangyilian
+	 * @date 2019年3月5日
+	 * @param currPage
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping("/findByPage")
+	public List<Test> findByPage(int currPage, int pageSize){
+		List<Test> testList = testMybatisService.findByPage(currPage, pageSize);
+		
+		return testList;
 	}
 	
 }

@@ -4,6 +4,7 @@
 * DateSource
 * SpringDataJPA
 * Mybatis
+* PageHelper
 * Thymeleaf
 * Redis
 * Shiro

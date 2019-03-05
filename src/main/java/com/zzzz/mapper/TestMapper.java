@@ -1,12 +1,13 @@
 package com.zzzz.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.mybatis.spring.annotation.MapperScan;
 
 import com.zzzz.model.Test;
 
@@ -17,7 +18,13 @@ import com.zzzz.model.Test;
  */
 //@Mapper //启动类上加了@MapperScan时,可以不要@Mapper
 public interface TestMapper{
-
+	
+	@Select("SELECT * FROM test")
+	public List<Test> findAll();
+	
+	@Select("SELECT COUNT(1) FROM test")
+	public int countAll();
+	
 	@Select("SELECT * FROM test WHERE code = #{code} LIMIT 1")
 	public Test findByCode(int code);
 
