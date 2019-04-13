@@ -120,6 +120,13 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!--在没有web.xml的情况下构建war时,最好将failOnMissingWebXml设为false(不设置时有时也不会报错,暂时没搞懂什么原因)-->
+			<plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 </project>
